@@ -24,9 +24,9 @@ Decoder::Decoder(string file_path)
 , pSwsCtx_(nullptr)
 {
     avdevice_register_all();
-    AVInputFormat *iformat = av_find_input_format("avfoundation");
+
     // Open video file
-    if (avformat_open_input(&pFormatCtx_, "FaceTime HD Camera", iformat, nullptr) != 0)
+    if (avformat_open_input(&pFormatCtx_, file_path_.c_str(), nullptr, nullptr) != 0)
     {
         throw runtime_error("Couldn't open file, file name: " + file_path_);
     }
